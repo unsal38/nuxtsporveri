@@ -1,5 +1,21 @@
 <template>
-  <div>
-    <NuxtWelcome />
-  </div>
+
+
+<body>
+    <NuxtPage />
+
+
+
+</body>
+
+
 </template>
+
+<style>
+body{
+	margin:0;
+	color:#6a6f8c;
+	background:#c8c8c8;
+	font:600 16px/18px 'Open Sans',sans-serif;
+}
+</style>
