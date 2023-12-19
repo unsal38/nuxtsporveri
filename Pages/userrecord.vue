@@ -268,6 +268,11 @@
     </button>
   </div>
 </template>
+<script setup>
+    useHead({
+        title: "kullanıcı kaydı",
+    })
+</script>
 <style>
 .kisikaydi {
   display: flex;
