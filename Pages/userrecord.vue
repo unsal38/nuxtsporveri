@@ -274,6 +274,13 @@
     })
 </script>
 <style>
+div.scrollup{
+  position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 72px;
+    color: red;
+}
 .kisikaydi {
   display: flex;
   justify-content: center;
@@ -281,6 +288,10 @@
   top: 10%;
   left: 50%;
   transform: translate(-50%, -10%);
+}
+.kisikaydi label{
+  font-size: 2vw;
+  font-weight: 400;
 }
 .kisikaydi .card {
   position: absolute !important;

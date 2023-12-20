@@ -75,7 +75,9 @@ export default defineNuxtConfig({
 
     },
   },
-
+  modules: [
+    'nuxt-mongoose',
+  ],
   runtimeConfig:{
     MONGODB_URI: process.env.MONGODB_URI
   }
