@@ -3,6 +3,12 @@ import { Schema, model } from "mongoose";
 const UserSchema = new Schema({
   name: String,
   email: String,
+  password: String,
+  createAt: {
+    type: Date,
+    default: Date.now(),
+  },
+  updateAt: Date,
   telnumber: Number,
   gender:{
     type: String,

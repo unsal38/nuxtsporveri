@@ -110,7 +110,7 @@
 </template>
 
 <script setup>
-
+  
 
 
 </script>
@@ -191,7 +191,7 @@
   background: rgba(255, 255, 255, 0.1);
 }
 .login-space .group input[data-type="password"] {
-  text-security: circle;
+  /* text-security: circle; */
   -webkit-text-security: circle;
 }
 .login-space .group .label {

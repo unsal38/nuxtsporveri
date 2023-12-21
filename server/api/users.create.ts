@@ -9,6 +9,7 @@ export default defineEventHandler(async (event) => {
   // const name      = event
   // const email     = event
   // const telnumber = event
+  // const password = event
   // const gender    = event
   // const boy             = event
   // const kilo            = event
@@ -25,6 +26,10 @@ export default defineEventHandler(async (event) => {
   // var users = await User.create({
   //   name: name,
   //   email: email,
+  // createAt: {
+  //   type: Date,
+  //   default: Date.now(),
+  // },
   //   telnumber: telnumber,
   //   gender:gender,
   //   boy: boy,
