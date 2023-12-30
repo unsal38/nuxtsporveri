@@ -1,288 +1,99 @@
-<template>
-  <div class="loginsingup">
-    <div class="row">
-      <div class="">
-        <div class="card">
-          <div class="login-box">
-            <div class="login-snip">
-              <input
-                id="tab-1"
-                type="radio"
-                name="tab"
-                class="sign-in"
-                checked
-              /><label for="tab-1" class="tab">Giriş Yap</label>
-              <input id="tab-2" type="radio" name="tab" class="sign-up" /><label
-                for="tab-2"
-                class="tab"
-                >Kayıt Ol</label
-              >
-              <div class="login-space">
-                <div class="login">
-                  <div class="group">
-                    <label for="user" class="label">Mail</label>
-                    <input
-                      id="user"
-                      type="text"
-                      class="input"
-                      placeholder="Mailinizi Giriniz"
-                    />
-                  </div>
-                  <div class="group">
-                    <label for="pass" class="label">Şifre</label>
-                    <input
-                      id="pass"
-                      type="password"
-                      class="input"
-                      data-type="password"
-                      placeholder="Şifrenizi Giriniz"
-                    />
-                  </div>
-                  <div class="group">
-                    <input id="check" type="checkbox" class="check" checked />
-                    <label for="check"
-                      ><span class="icon me-1"></span>Oturumu Açık Tut</label
-                    >
-                  </div>
-                  <div class="group">
-                    <NuxtLink to="/home"><input type="submit" class="button" value="Giriş Yap" /></NuxtLink>
-                    
-                  </div>
-                  <div class="hr"></div>
-                  <div class="foot">
-                    <a href="#">Şifreni mi Unuttunuz ??</a>
-                  </div>
-                </div>
-                <div class="sign-up-form">
-                  <div class="group">
-                    <label for="user" class="label">İsim Soyad</label>
-                    <input
-                      id="user"
-                      type="text"
-                      class="input"
-                      placeholder="İsim Soyad Giriniz"
-                    />
-                  </div>
-                  <div class="group">
-                    <label for="pass" class="label">Şifre</label>
-                    <input
-                      id="pass"
-                      type="password"
-                      class="input"
-                      data-type="password"
-                      placeholder="Şifre Oluşturunuz"
-                    />
-                  </div>
-                  <div class="group">
-                    <label for="pass" class="label">Şifre Tekrarı</label>
-                    <input
-                      id="pass"
-                      type="password"
-                      class="input"
-                      data-type="password"
-                      placeholder="Oluşturduğunuz Şifreyi Tekrar Giriniz"
-                    />
-                  </div>
-                  <div class="group">
-                    <label for="pass" class="label">Mail</label>
-                    <input
-                      id="pass"
-                      type="text"
-                      class="input"
-                      placeholder="Mail Adresinizi Giriniz"
-                    />
-                  </div>
-                  <div class="group">
-                    <input type="submit" class="button" value="Kayıt Ol" />
-                  </div>
-                  <div class="hr"></div>
-                  <div class="foot">
-                    <label for="tab-1">Zaten Üyeyim</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup>
-  
-
-
+// definePageMeta({
+//     auth: {
+//         unauthenticatedOnly: true,
+//         navigateAuthenticatedTo: '/login',
+//     }
+// })
+const { status, data, signIn, signOut, refresh   } = useAuth()
+const loggIn = computed(() => status.value === "authenticated");
+async function handleSignIn() {
+  await signIn();
+}
+async function handleSignOut() {
+  await signOut();
+}
 </script>
+
+<template>
+  <nav class="navbar-altmenu navbar-expand-lg navbar fixed-bottom navbar-light">
+    <div class="container-fluid justify-content-center">
+      <ul class="list-group">
+        <li v-if="loggIn" class="list-group-item bg-transparent border-0">
+          <ul class="navbar-nav flex-row">
+            <li class="nav-item mx-2">
+              <NuxtLink to="/userrecord">
+                <button name="kisikaydi" type="button" class="btn">
+                  <i class="col-2 fa-solid fa-person-circle-plus"></i>
+                </button>
+              </NuxtLink>
+            </li>
+            <li class="nav-item mx-2">
+              <button name="kisibilgiguncelle" type="button" class="btn">
+                <i class="col-2 fa-solid fa-user-pen"></i>
+              </button>
+            </li>
+            <li class="nav-item mx-2">
+              <button name="verigirisi" type="button" class="btn">
+                <i class="col-2 fa-solid fa-server"></i>
+              </button>
+            </li>
+            <li class="nav-item mx-2">
+              <button name="gelisimtakip" type="button" class="btn">
+                <i class="col-2 fa-solid fa-person-circle-question"></i>
+              </button>
+            </li>
+            <li class="nav-item mx-2">
+              <button name="hesaplama" type="button" class="btn">
+                <i class="col-2 fa-solid fa-calculator"></i>
+              </button>
+            </li>
+            <li class="nav-item mx-2">
+              <button @click="handleSignOut" name="singout" type="button" class="btn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+              </button>
+            </li>
+          </ul>
+        </li>
+        <li v-else class="list-group-item bg-transparent border-0">
+          <ul class="navbar-nav flex-row">
+            <li class="nav-item mx-2">
+              <button @click="handleSignIn" name="singin" type="button" class="btn">
+                <i class="fa-solid fa-right-to-bracket"></i>
+              </button>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <section>
+    <div class="bg-img1 position-absolute w-100 h-100"></div>
+  </section>
+</template>
 <style>
-.login-box {
-  width: 100%;
-  margin: auto;
-  max-width: 525px;
-  min-height: 670px;
-  position: relative;
-  background-image: url(/singupimg/backgroundimg.jpg);
-  background-size: cover;
-  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
-}
-.login-snip {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  padding: 90px 70px 50px 70px;
-  background: rgb(0 77 77 / 45%);
-}
-.login-snip .login,
-.login-snip .sign-up-form {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: absolute;
-  transform: rotateY(180deg);
-  backface-visibility: hidden;
-  transition: all 0.4s linear;
-}
-.login-snip .sign-in,
-.login-snip .sign-up,
-.login-space .group .check {
-  display: none;
-}
-.login-snip .tab,
-.login-space .group .label,
-.login-space .group .button {
+button {
   text-transform: uppercase;
 }
-.login-snip .tab {
-  font-size: 22px;
-  margin-right: 15px;
-  padding-bottom: 5px;
-  margin: 0 15px 10px 0;
-  display: inline-block;
-  border-bottom: 2px solid transparent;
-}
-.login-snip .sign-in:checked + .tab,
-.login-snip .sign-up:checked + .tab {
-  color: #fff;
-  border-color: #1161ee;
-}
-.login-space {
-  min-height: 345px;
-  position: relative;
-  perspective: 1000px;
-  transform-style: preserve-3d;
-}
-.login-space .group {
-  margin-bottom: 15px;
-}
-.login-space .group .label,
-.login-space .group .input,
-.login-space .group .button {
-  width: 100%;
-  color: #fff;
-  display: block;
-}
-.login-space .group .input,
-.login-space .group .button {
-  border: none;
-  padding: 15px 20px;
-  border-radius: 25px;
-  background: rgba(255, 255, 255, 0.1);
-}
-.login-space .group input[data-type="password"] {
-  /* text-security: circle; */
-  -webkit-text-security: circle;
-}
-.login-space .group .label {
-  color: #aaa;
-  font-size: 12px;
-}
-.login-space .group .button {
-  background: #1161ee;
-}
-.login-space .group label .icon {
-  width: 15px;
-  height: 15px;
-  border-radius: 2px;
-  position: relative;
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.1);
-}
-.login-space .group label .icon:before,
-.login-space .group label .icon:after {
-  content: "";
-  width: 10px;
-  height: 2px;
-  background: #fff;
+.navbutton {
+  top: 50%;
   position: absolute;
-  transition: all 0.2s ease-in-out 0s;
+  transform: translate(0, -50%);
+  flex-wrap: wrap;
 }
-.login-space .group label .icon:before {
-  left: 3px;
-  width: 5px;
-  bottom: 6px;
-  transform: scale(0) rotate(0);
+.navbutton button {
+  min-height: 12vh;
+  padding: 10px;
+  box-shadow: 6px 7px 6px #888888;
 }
-.login-space .group label .icon:after {
-  top: 6px;
-  right: 0;
-  transform: scale(0) rotate(0);
+.bg-img1 {
+  background-image: url("/assets/img/anasayfaimg/backround.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.login-space .group .check:checked + label {
-  color: #fff;
-}
-.login-space .group .check:checked + label .icon {
-  background: #1161ee;
-}
-.login-space .group .check:checked + label .icon:before {
-  transform: scale(1) rotate(45deg);
-}
-.login-space .group .check:checked + label .icon:after {
-  transform: scale(1) rotate(-45deg);
-}
-.login-snip .sign-in:checked + .tab + .sign-up + .tab + .login-space .login {
-  transform: rotate(0);
-}
-.login-snip .sign-up:checked + .tab + .login-space .sign-up-form {
-  transform: rotate(0);
-}
-
-*,
-:after,
-:before {
-  box-sizing: border-box;
-}
-.clearfix:after,
-.clearfix:before {
-  content: "";
-  display: table;
-}
-.clearfix:after {
-  clear: both;
-  display: block;
-}
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.hr {
-  height: 2px;
-  margin: 60px 0 50px 0;
-  background: rgba(255, 255, 255, 0.2);
-}
-.foot {
-  text-align: center;
-}
-.card {
-  width: 100%;
-  /* left: 100px; */
-  position: absolute;
-  height: 100%;
-}
-
-::placeholder {
-  color: #b3b3b3;
+nav.navbar-altmenu i {
+  color: #615f5f;
+  font-size: 7vw;
 }
 </style>

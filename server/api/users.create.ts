@@ -2,9 +2,9 @@ import { User } from "~~/server/models/user.model";
 
 export default defineEventHandler(async (event) => {
   
-  const user_id = event
-  const check_user = await User.findById(user_id)
-  console.log(event,check_user, "create api")
+  // const user_id = event
+  // const check_user = await User.findById(user_id)
+  // console.log(event,check_user, "create api")
   // if(check_user !== null) {
   // const name      = event
   // const email     = event

@@ -10,11 +10,10 @@ const AntrUserSchema = new Schema({
   },
   updateAt: Date,
   reflesh_token: String,
-  telnumber: Number,
   limit: Number,
-  salon_user: { // TEK ANTRONÖR MÜ SALON MU 
+  role:{
     type: String,
-    enum:[true, false]
+    enum: ["user", "admin"],
   }
 });
 

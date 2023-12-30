@@ -75,29 +75,18 @@ export default defineNuxtConfig({
 
     },
   },
-  modules: [
-    'nuxt-mongoose',
-    // '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
-  ],
-  // auth: {
-  //   strategies: {
-  //     local: {
-  //       token: {
-  //         required: false,
-  //         type: false
-  //       },
-  //       endpoints: {
-  //         login: { url: '/api/auth/login', method: 'post' },
-  //         logout: { url: '/api/auth/logout', method: 'post' },
-  //         user: { url: '/api/auth/user', method: 'get' }
-  //       }
-  //     }
-  //   }
-  // },
-  runtimeConfig:{
+  runtimeConfig: {
     MONGODB_URI: process.env.MONGODB_URI
   },
- 
-  
+  modules: [
+    'nuxt-mongoose',
+    '@sidebase/nuxt-auth'
+  ],
+  auth: {
+    provider: {
+      type: 'authjs',
+      
+    },
+    
+  },
 })
