@@ -22,7 +22,7 @@
                   <div class="group">
                     <label for="user" class="label">Mail</label>
                     <input
-                      id="user"
+                      v-model="antr_email"
                       type="text"
                       class="input"
                       placeholder="Mailinizi Giriniz"
@@ -31,7 +31,7 @@
                   <div class="group">
                     <label for="pass" class="label">Şifre</label>
                     <input
-                      id="pass"
+                      v-model="antr_pass"
                       type="password"
                       class="input"
                       data-type="password"
@@ -45,9 +45,12 @@
                     >
                   </div>
                   <div class="group">
-                    <NuxtLink to="/login"
-                      ><input type="submit" class="button" value="Giriş Yap"
-                    /></NuxtLink>
+                    <input
+                      @click="handlesignin_credentials"
+                      type="submit"
+                      class="button"
+                      value="Giriş Yap"
+                    />
                   </div>
                   <div
                     id="alert-login"
@@ -56,9 +59,24 @@
                     bütün alanları doldurunuz
                   </div>
                   <div class="hr"></div>
-                  <div class="foot">
-                    <a @click="handleSignIn" class="m-3" href="javascript:void(0)"><i class="fa-brands fa-github fa-2x"></i></a>
-                    <a href="javascript:void(0)">Şifreni mi Unuttunuz ??</a>
+                  <div class="foot d-flex flex-wrap jusfiy-content-around">
+                    <a
+                      @click="handlesignin_github"
+                      class="col-5"
+                      href="javascript:void(0)"
+                    >
+                      <i class="fa-brands fa-github fa-2x color-lightblue"></i>
+                    </a>
+                    
+                    <a
+                      @click="handlesignin_google"
+                      class="col-5"
+                      href="javascript:void(0)"
+                      ><i class="fa-brands fa-google fa-2x color-lightblue"></i>
+                    </a>
+                    <a class="col-12 mt-2" href="javascript:void(0)"
+                      >Şifreni mi Unuttunuz ??</a
+                    >
                   </div>
                 </div>
                 <div class="sign-up-form">
@@ -135,12 +153,31 @@
 </template>
 
 <script setup>
-const { status, data, signIn, signOut, refresh   } = useAuth()
-const loggIn = computed(() => status.value === "authenticated");
-async function handleSignIn() {
-  await signIn();
+definePageMeta({
+  auth: {
+    unauthenticatedOnly: true,
+    navigateAuthenticatedTo: "/",
+  },
+  middleware: "auth",
+});
+const { status, data, signIn, signOut } = useAuth();
+const antr_email = ref("");
+const antr_pass = ref("");
+async function handlesignin_credentials() {
+  await signIn("credentials", {
+    email: antr_email.value,
+    password: antr_pass.value,
+  });
 }
-console.log(status.value);
+async function handlesignin_github() {
+  await signIn("github"); // Sign in the user
+}
+async function handlesignin_google() {
+  await signIn("google");
+}
+
+//console.log(status.value, data.value.user.email)
+
 const check = ref(false);
 const antr_user_name = ref("");
 const antr_user_pass = ref("");
@@ -198,12 +235,12 @@ async function register() {
     register_alert("bütün alanları doldurunuz");
     check.value = false;
   }
-
-  
-
 }
 </script>
 <style>
+.color-lightblue{
+  color: lightblue;
+}
 .login-box {
   width: 100%;
   margin: auto;

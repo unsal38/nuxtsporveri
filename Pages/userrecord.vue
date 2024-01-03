@@ -6,7 +6,10 @@
     <ul class="nav solmenu flex-column col-6 col-md-4">
       <div class="d-flex mb-4">
         <a class="navbar-brand w-25" href="anasayfa.html"
-          ><img class="w-100" src="../pageimg/solmenuimg.png" alt="navbar brand"
+          ><img
+            class="w-100"
+            src="../pageimg/solmenuimg.png"
+            alt="navbar brand"
         /></a>
         <i class="fa-solid fa-angle-left fa-2x"></i>
       </div>
@@ -269,17 +272,20 @@
   </div>
 </template>
 <script setup>
-    useHead({
-        title: "kullanıcı kaydı",
-    })
+definePageMeta({
+  middleware: "auth"
+});
+useHead({
+  title: "kullanıcı kaydı",
+});
 </script>
 <style>
-div.scrollup{
+div.scrollup {
   position: fixed;
-    bottom: 0;
-    right: 0;
-    margin: 72px;
-    color: red;
+  bottom: 0;
+  right: 0;
+  margin: 72px;
+  color: red;
 }
 .kisikaydi {
   display: flex;
@@ -289,7 +295,7 @@ div.scrollup{
   left: 50%;
   transform: translate(-50%, -10%);
 }
-.kisikaydi label{
+.kisikaydi label {
   font-size: 2vw;
   font-weight: 400;
 }

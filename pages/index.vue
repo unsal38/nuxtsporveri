@@ -1,18 +1,24 @@
 <script setup>
-// definePageMeta({
-//     auth: {
-//         unauthenticatedOnly: true,
-//         navigateAuthenticatedTo: '/login',
-//     }
-// })
+definePageMeta({
+    auth: {
+        unauthenticatedOnly: true,
+        navigateAuthenticatedTo: '/login',
+    }
+})
 const { status, data, signIn, signOut, refresh   } = useAuth()
-const loggIn = computed(() => status.value === "authenticated");
-async function handleSignIn() {
-  await signIn();
+
+
+const loggIn = computed(() => status.value === "authenticated")  
+async function handlersingOut_github(params) {
+  await signOut()
 }
-async function handleSignOut() {
-  await signOut();
-}
+//console.log(data.value.user.email)
+// async function handleSignIn() {
+//   await signIn();
+// }
+// async function handleSignOut() {
+//   await signOut();
+// }
 </script>
 
 <template>
@@ -49,7 +55,7 @@ async function handleSignOut() {
               </button>
             </li>
             <li class="nav-item mx-2">
-              <button @click="handleSignOut" name="singout" type="button" class="btn">
+              <button @click="handlersingOut_github" name="singout" type="button" class="btn">
                 <i class="fa-solid fa-right-from-bracket"></i>
               </button>
             </li>
@@ -58,9 +64,11 @@ async function handleSignOut() {
         <li v-else class="list-group-item bg-transparent border-0">
           <ul class="navbar-nav flex-row">
             <li class="nav-item mx-2">
-              <button @click="handleSignIn" name="singin" type="button" class="btn">
+              <NuxtLink to="/login">
+                <button name="singin" type="button" class="btn">
                 <i class="fa-solid fa-right-to-bracket"></i>
               </button>
+              </NuxtLink>
             </li>
           </ul>
         </li>

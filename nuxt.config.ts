@@ -80,13 +80,16 @@ export default defineNuxtConfig({
   },
   modules: [
     'nuxt-mongoose',
-    '@sidebase/nuxt-auth'
+    '@sidebase/nuxt-auth',
+    '@pinia/nuxt',
   ],
   auth: {
     provider: {
-      type: 'authjs',
-      
+      type: 'authjs'
     },
-    
   },
+  pinia: {
+    storesDirs: ['./stores/**', './custom-folder/stores/**'],
+  }
+  
 })
